@@ -1,3 +1,8 @@
+*{
+    font-family: 'Press Start 2P', cursive;
+    color:white;
+}
+
 .full-screen{
     height:100vh;
     width:100vw;
@@ -62,4 +67,201 @@
     top:40%;
     left:50%;
     transform: translate(-50%, -50%);
+}
+
+.game-start{
+    position: absolute;
+    bottom:5%;
+}
+.password{
+    position: absolute;
+    bottom:0;
+}
+
+.stage-select{
+    background-image:url("assets/stageselect.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    position: relative;
+}
+.mega-man, .char-tile{
+    height: 14vh;
+    width: 14vh;
+    z-index: 2;
+    background-size: cover;
+    position: absolute;   
+}
+.mega-man{
+    background-image: url(assets/tile007.png);
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.sparkman{   
+    background-image: url(assets/tile003.png); 
+    top: 19.5%;
+    left: 34%;
+    transform: translate(-50%,-50%);
+}
+.snakeman{   
+    background-image: url(assets/tile004.png); 
+    top: 19.5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.needleman{
+    background-image: url(assets/tile005.png); 
+    top: 19.5%;
+    left:66%;
+    transform: translate(-50%,-50%);
+}
+
+.hardman{
+    background-image: url(assets/tile009.png); 
+    top: 47%;
+    left:34%;
+    transform: translate(-50%,-50%);
+}
+
+.topman{
+    background-image: url(assets/tile011.png); 
+    top: 47%;
+    left:66%;
+    transform: translate(-50%,-50%);
+}
+
+.geminiman{
+    background-image: url(assets/tile015.png); 
+    top: 74%;
+    left:34%;
+    transform: translate(-50%,-50%);
+}
+
+.magnetman{
+    background-image: url(assets/tile016.png); 
+    top: 74%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.shadowman{
+    background-image: url(assets/tile017.png); 
+    top: 74%;
+    left:66%;
+    transform: translate(-50%,-50%);
+}
+
+.look-left{
+    background-image: url(assets/tile006.png); 
+}
+.look-up-left{
+    background-image: url(assets/tile000.png); 
+}
+.look-up{
+    background-image: url(assets/tile001.png); 
+}
+.look-up-right{
+    background-image: url(assets/tile002.png); 
+}
+.look-right{
+    background-image: url(assets/tile008.png); 
+}
+.look-down-right{
+    background-image: url(assets/tile014.png); 
+}
+.look-down{
+    background-image: url(assets/tile013.png); 
+}
+.look-down-left{
+    background-image: url(assets/tile012.png); 
+}
+
+.blue-bar{
+    width:100%;
+    animation: grow 1.5s;
+    background-image: linear-gradient(blue,lightblue,blue);
+    position: absolute;
+    top:50%;
+    z-index:10;
+    transform:translateY(-50%);
+    animation-fill-mode: forwards;
+}
+
+@keyframes grow{
+    from {height:0; display: none; }
+    to {height:40%; display: block;}
+}
+
+.enemy-char{
+    height: 35vh;
+    width: 28vh;
+    z-index: 12;
+    position: absolute;
+    top: 50%;
+    background-repeat: no-repeat;
+    display: block;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.sparkman-char{
+    background-image: url(assets/sparkman.png);
+}
+.snakeman-char{
+    background-image: url(assets/snakeman.png);
+}
+.needleman-char{
+    background-image: url(assets/needleman.png);
+}
+.hardman-char{
+    background-image: url(assets/hardman.png);
+
+}
+.topman-char{
+    background-image: url(assets/topman.png);
+}
+.geminiman-char{
+    background-image: url(assets/geminiman.png);
+}
+.magnetman-char{
+    background-image: url(assets/magnetman.png);
+}
+.shadowman-char{
+    background-image: url(assets/shadowman.png);
+}
+
+.play-area{
+    position: relative;
+}
+.card{
+    box-sizing: border-box;
+    position: relative;
+    height: 60%;
+    width: 20%;
+    display: inline-block;
+}
+
+.back{
+    position: absolute;
+    background-image: url("assets/megaman3-cover.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+.front{
+    position: absolute;
+}
+
+@media only screen and (min-width: 1600px){
+    .sparkman,.hardman, .geminiman{
+        left:32.5%;
+    }
+    .needleman, .topman, .shadowman{
+        left:67.5%;
+    }
+
 }
