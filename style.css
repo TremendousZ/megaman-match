@@ -2,10 +2,18 @@
     font-family: 'Press Start 2P', cursive;
     color:white;
 }
-
-.full-screen{
-    height:100vh;
+body{
     width:100vw;
+    height:100vh;
+    position: relative;
+}
+.full-screen{
+    height:100%;
+    width:100%;
+    z-index: 2;
+    position: absolute;
+    top:0;
+    left:0;
 }
 .start-button{
     position: relative;
@@ -198,7 +206,7 @@
 }
 
 .enemy-char{
-    height: 35vh;
+    height: 20vh;
     width: 28vh;
     z-index: 12;
     position: absolute;
@@ -209,59 +217,205 @@
     transform: translate(-50%,-50%);
 }
 .sparkman-char{
-    background-image: url(assets/sparkman.png);
+    background-image: url(assets/sparkman-fill.png);
 }
 .snakeman-char{
-    background-image: url(assets/snakeman.png);
+    background-image: url(assets/snakeman-fill.png);
 }
 .needleman-char{
-    background-image: url(assets/needleman.png);
+    background-image: url(assets/needleman-fill.png);
 }
 .hardman-char{
-    background-image: url(assets/hardman.png);
+    background-image: url(assets/hardman-fill.png);
 
 }
 .topman-char{
-    background-image: url(assets/topman.png);
+    background-image: url(assets/topman-fill.png);
 }
 .geminiman-char{
-    background-image: url(assets/geminiman.png);
+    background-image: url(assets/geminiman-fill.png);
 }
 .magnetman-char{
-    background-image: url(assets/magnetman.png);
+    background-image: url(assets/magnetman-fill.png);
 }
 .shadowman-char{
-    background-image: url(assets/shadowman.png);
+    background-image: url(assets/shadowman-fill.png);
 }
 
+.typewriter{
+    position: absolute;
+    top:70%;
+    left:50%;
+    transform:translateX(-50%);
+}
+.typing{
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(20, end),
+      blink-caret .75s step-end infinite;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 15% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: transparent; }
+  }
+
 .play-area{
-    position: relative;
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index: 3;
+}
+.side-bar{
+    box-sizing: border-box;
+    width:30%;
+    border:2px solid yellow;
+    height:100%;
+    display: inline-block;
+    z-index: 3;
+}
+.card-area{
+    box-sizing: border-box;
+    width:70%;
+    border: 2px solid red;
+    height:100%;
+    display: inline-block;
+    z-index: 3;
+    vertical-align: top;
 }
 .card{
     box-sizing: border-box;
     position: relative;
-    height: 60%;
-    width: 20%;
+    height: 23%;
+    width: 12%;
+    margin:2.5% 1.5%;
     display: inline-block;
 }
 
 .back{
     position: absolute;
-    background-image: url("assets/megaman3-cover.jpg");
     height: 100%;
     width: 100%;
-    background-size: cover;
+    background-color: #fff;
 }
 .front{
     position: absolute;
+    background-size: cover;
+    height:100%;
+    width:100%;
+    background-image: url("assets/megaman3-cover.jpg");
 }
 
+.iframe-container{
+    height: 100%;
+    width:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color:transparent;
+    z-index:0;
+}
+.video-background{
+    height:100%;
+    width:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:0;
+}
+.iframe-screen{
+    height:100%;
+    position: fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index: 1;  
+    background-color: rgba(0,0,0,.3);
+}
+.hide{
+    display: none;
+}
+.enemy-image{
+    width:100%;
+    height:auto;
+}
+/* Flip Animation */
+
+.card {
+    background-color: transparent;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+.card.card-flipped .card-inner{
+    transform: rotateY(180deg);
+}
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.back {
+    transform: rotateY(180deg);
+  }
+
+@media only screen and (min-width: 485px){
+    .sparkman,.hardman, .geminiman{
+        left:19%;
+    }
+    .needleman, .topman, .shadowman{
+        left:81%;
+    }
+
+}
+@media only screen and (min-width: 955px){
+    .sparkman,.hardman, .geminiman{
+        left:23.5%;
+    }
+    .needleman, .topman, .shadowman{
+        left:76%;
+    }
+
+}
+@media only screen and (min-width: 1200px){
+    .sparkman,.hardman, .geminiman{
+        left:27.5%;
+    }
+    .needleman, .topman, .shadowman{
+        left:72%;
+    }
+}
+@media only screen and (min-width: 1440px){
+    .sparkman,.hardman, .geminiman{
+        left:31%;
+    }
+    .needleman, .topman, .shadowman{
+        left:68.75%;
+    }
+
+}
 @media only screen and (min-width: 1600px){
     .sparkman,.hardman, .geminiman{
         left:32.5%;
     }
     .needleman, .topman, .shadowman{
-        left:67.5%;
+        left:67%;
     }
 
 }
