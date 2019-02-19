@@ -1,6 +1,11 @@
 $(document).ready(initializeApp);
 
 let jukebox = null;
+let flipCount = 0;
+let score = 0;
+let cardFlipped = false;
+let firstCard = "";
+let secondCard = "";
 
 function initializeApp(){
     launchTitle();
@@ -125,35 +130,47 @@ function enemySelected(e){
     setTimeout(selectLevel, 7500, e);
     let clicked = e.currentTarget.classList[0];
     let enemyChar = $("<div>").addClass("enemy-char");
+    let typewriter = $("<div>").addClass("typewriter");
+    let bossText = $("<h2>").addClass("typing");
     switch(clicked){
         case "sparkman":
         enemyChar.addClass("enemy-char sparkman-char");
+        bossText.text("SPARKMAN");
         break;
         case "snakeman":
         enemyChar.addClass("enemy-char snakeman-char");
+        bossText.text("SNAKEMAN");
         break;
         case "needleman":
         enemyChar.addClass("enemy-char needleman-char");
+        bossText.text("NEEDLEMAN");
         break;
         case "hardman":
         enemyChar.addClass("enemy-char hardman-char");
+        bossText.text("HARDMAN");
         break;
         case "topman":
         enemyChar.addClass("enemy-char topman-char");
+        bossText.text("TOPMAN");
         break;
         case "geminiman":
         enemyChar.addClass("enemy-char geminiman-char");
+        bossText.text("GEMINIMAN");
         break;
         case "magnetman":
         enemyChar.addClass("enemy-char magnetman-char");
+        bossText.text("MAGNETMAN");
         break;
         case "shadowman":
         enemyChar.addClass("enemy-char shadowman-char");
+        bossText.text("SHADOWMAN");
         break;
 
     }
+    typewriter.append(bossText);
     let blueBar = $("<div>").addClass("blue-bar");
-    blueBar.append(enemyChar);
+
+    blueBar.append(enemyChar, bossText);
     $('.play-area').append(blueBar);
 }
 
@@ -190,7 +207,7 @@ function selectLevel(e){
 function launchLevel( name ){
     console.log("LAUNCHED!");
     jukeboxStop();
-    jukeboxPlay( name );
+    // jukeboxPlay( name );
     $(".play-area").empty();
     createBoard( name );
 }
@@ -206,19 +223,79 @@ function createBoard( name ){
         geminiman:10,
         needleman:11,
     }
+    
+    let levelVideos = {
+        magnetman: "https://www.youtube.com/embed/-G3r_bJ6kfI?autoplay=1",
+        hardman: "https://www.youtube.com/embed/HmFMb8ccje0?autoplay=1",
+        topman: "https://www.youtube.com/embed/pIXUBtPb4pI?autoplay=1",
+        shadowman:"https://www.youtube.com/embed/y9VRH-8Km9E?autoplay=1",
+        sparkman:"https://www.youtube.com/embed/4lHKH8hNqCs?autoplay=1",
+        snakeman:"https://www.youtube.com/embed/ElfB3ybJBSQ?autoplay=1",
+        geminiman:"https://www.youtube.com/embed/Fma2rPKhldk?autoplay=1",
+        needleman:"https://www.youtube.com/embed/jj0mai4ax_k?autoplay=1"
+    }
+    let enemiesInLevel = {
+        magnetman:["assets/mag-fly.png","assets/peterchy.png","assets/giant-spring.png","assets/Protoman9.jpg","assets/mag-fly.png","assets/peterchy.png","assets/giant-spring.png","assets/Protoman9.jpg"],
+        hardman:["assets/pickelman-bull.png","assets/have-su-bee.png","assets/wanaan.png","assets/hammer-joe.png", "assets/returning-monkey.png"],
+
+    }
+
     let winCondition = (boardMatches[name]) *2;
     let cardArea = $("<div>").addClass("card-area");
     let sideBar = $("<div>").addClass("side-bar");
+    let scoreDisplay = $("<div>").addClass("current-score").text(`Score <br> ${score}`);
+    let flipCountDisplay = $("<div>").addClass("flip-count-display").text(`Attempts: ${flipCount}`);
+    sideBar.append(score, flipCountDisplay);
     $(".play-area").append(sideBar, cardArea);
-
-
+    let videoBackground = $(".video-background");
+    videoBackground.attr("src", `${levelVideos[name]}`);
+    $(".iframe-container").removeClass("hide");
+    videoBackground.removeClass("hide");
+    $(".iframe-container").append(videoBackground);
+    $(".play-area").css("background-color", "transparent");
     for( let i = 0; i < winCondition; i++){
         let card = $("<div>").addClass("card");
-        let front = $("<div>").addClass("front");
-        let back = $("<div>").addClass("back");
-        card.append(front, back);
-        $('.play-area').append(card);
+        let cardInner = $("<div>").addClass("card-inner");
+        let front = $("<div>").addClass("back");
+        let frontImage = $("<img>").attr("src", `${enemiesInLevel[name][i]}`).addClass("enemy-image");
+        front.append(frontImage);
+        let back = $("<div>").addClass("front");
+        cardInner.append(front,back);
+        card.append(cardInner);
+        $('.card-area').append(card);
     }
+    startCardGame( name );
 }
 
+function startCardGame( name ){
+    $(".card").on('click', flipCard);
+}
 
+function flipCard( ){
+    flipCount++;
+    $(".flip-count-display").text(`Attempts: ${flipCount}`);
+    $(this).addClass("card-flipped");
+
+    if(cardFlipped == true){
+        secondCard = $(this).html();
+        checkMatch();
+    } else {
+        cardFlipped = true;
+        firstCard = $(this).html();
+    }   
+}
+
+function checkMatch(){
+    if( secondCard == firstCard ){
+        score += 100;
+    } else {
+        setTimeout(flipCardBack, 2000);
+    }
+        firstCard="";
+        secondCard="";
+        cardFlipped = false;
+}
+
+function flipCardBack(){
+    $(".card.card-flipped").removeClass("card-flipped");
+}
