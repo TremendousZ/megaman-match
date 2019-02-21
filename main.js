@@ -14,6 +14,7 @@ function initializeApp(){
 function launchTitle(){
     pressToPlay();
 }
+// INTRO SCREEN BUTTON
 
 function pressToPlay(){
     let firstScreen = $("<div>").addClass("intro-text");
@@ -22,6 +23,8 @@ function pressToPlay(){
     firstScreen.append(button);
     $(".play-area").append(firstScreen);
 }
+
+// HAVE THE TEXT FADE IN AND OUT AND PLAY TITLE
 
 function introText(){
     $(".play-area").empty();
@@ -61,16 +64,37 @@ function fadeout(){
     setTimeout(showTitle,2000);
 }
 
+// DISPLAY THE MAIN TITLE
+
 function showTitle(){
     $(".play-area").empty();
     let title = $("<div>").addClass("title").addClass("fade-in");
+    
     let gameStart = $("<div>").text("GAME START").addClass('game-start');
+    gameStart.on("mouseenter", arrowSelectStart);
+    gameStart.on("mouseleave", clearArrow);
     let password = $("<div>").text("PASSWORD").addClass('password');
+    password.on("mouseenter", arrowSelectPassword);
+    password.on("mouseleave", clearArrow);
     title.append(gameStart, password);
     $(".play-area").append(title);
     $('.game-start').on('click', startGame);
     // $('.password').on('click', passWord);
 }
+function arrowSelectStart(){
+    let arrow = $("<div>").addClass("arrowStart").text("▶");
+    $('.title').append(arrow);
+}
+function arrowSelectPassword(){
+    let arrow = $("<div>").addClass("arrowPassword").text("▶");
+    $('.title').append(arrow);
+}
+function clearArrow(){
+    $(".arrowStart").hide();
+    $(".arrowPassword").hide();
+}
+
+// SWITCH TO THE STAGE SELECT SCREEN
 
 function startGame(){
     jukeboxStop();
@@ -99,6 +123,8 @@ function startGame(){
     $(".char-tile").on('click', enemySelected);  
 }
 
+// MEGAMAN LOOKS IN THE DIRECTION OF ROBOT HOVERED
+
 function upLeft(){
     $(".mega-man").addClass("look-up-left").removeClass("look-left look-up look-up-right look-right look-down-right look-down look-down-left");
 }
@@ -123,6 +149,8 @@ function lookDown(){
 function downRight(){
     $(".mega-man").addClass("look-down-right").removeClass("look-up-left look-left look-up look-up-right look-right look-down look-down-left");
 }
+
+//ENEMY BOSS IS CLICKED 
 
 function enemySelected(e){
     jukeboxStop();
@@ -165,14 +193,15 @@ function enemySelected(e){
         enemyChar.addClass("enemy-char shadowman-char");
         bossText.text("SHADOWMAN");
         break;
-
     }
     typewriter.append(bossText);
     let blueBar = $("<div>").addClass("blue-bar");
 
-    blueBar.append(enemyChar, bossText);
+    blueBar.append(enemyChar, typewriter);
     $('.play-area').append(blueBar);
 }
+
+//DETERMINE WHICH LEVEL WAS SELECTED AND START THAT LEVEL
 
 function selectLevel(e){
     let clicked = e.currentTarget.classList[0];
@@ -204,6 +233,8 @@ function selectLevel(e){
     }
 }
 
+// STOP THE MUSIC CLEAR THE PLAY AREA AND CREATE THE BOARD
+
 function launchLevel( name ){
     console.log("LAUNCHED!");
     jukeboxStop();
@@ -219,9 +250,9 @@ function createBoard( name ){
         topman:6,
         shadowman:7,
         sparkman:8,
-        snakeman:9,
-        geminiman:10,
-        needleman:11,
+        snakeman:8,
+        geminiman:9,
+        needleman:7,
     }
     
     let levelVideos = {
@@ -236,8 +267,13 @@ function createBoard( name ){
     }
     let enemiesInLevel = {
         magnetman:["assets/mag-fly.png","assets/peterchy.png","assets/giant-spring.png","assets/Protoman9.jpg","assets/mag-fly.png","assets/peterchy.png","assets/giant-spring.png","assets/Protoman9.jpg"],
-        hardman:["assets/pickelman-bull.png","assets/have-su-bee.png","assets/wanaan.png","assets/hammer-joe.png", "assets/returning-monkey.png"],
-
+        hardman:["assets/pickelman-bull.png","assets/have-su-bee.png","assets/wanaan.png","assets/hammer-joe.png", "assets/returning-monkey.png", "assets/pickelman-bull.png","assets/have-su-bee.png","assets/wanaan.png","assets/hammer-joe.png", "assets/returning-monkey.png"],
+        topman:["assets/bolton-and-nutton.png","assets/pickelman-bull.png","assets/mechakkero.png","assets/tama.png","assets/komasaburo.png","assets/metall-dx.png","assets/bolton-and-nutton.png","assets/pickelman-bull.png","assets/mechakkero.png","assets/tama.png","assets/komasaburo.png","assets/metall-dx.png"],
+        shadowman:["assets/new-shotman.png","assets/mechakkero.png","assets/peterchy.png","assets/walking-bomb.png","assets/hologran.png","assets/parasyu.png","assets/Protoman9.jpg","assets/new-shotman.png","assets/mechakkero.png","assets/peterchy.png","assets/walking-bomb.png","assets/hologran.png","assets/parasyu.png","assets/Protoman9.jpg"],
+        sparkman:["assets/jamacy.png", "assets/bolton-and-nutton.png","assets/elecn.png","assets/electric.png","assets/hammer-joe.png","assets/pickelman-bull.png","assets/peterchy.png","assets/jamacy.png", "assets/bolton-and-nutton.png","assets/elecn.png","assets/electric.png","assets/hammer-joe.png","assets/pickelman-bull.png","assets/peterchy.png"],
+        snakeman:["assets/petit-snakey.png","assets/dada.png","assets/big-snakey.png","assets/potton.png","assets/bomb-flier.png","assets/bubukan.png","assets/jamacy.png","assets/hammer-joe.png","assets/petit-snakey.png","assets/dada.png","assets/big-snakey.png","assets/potton.png","assets/bomb-flier.png","assets/bubukan.png","assets/jamacy.png","assets/hammer-joe.png"],
+        geminiman:["assets/nitron.png","assets/bomber-pepe.png","assets/gyoraibo.png","assets/Protoman9.jpg","assets/pole.png","assets/penpen-maker.png","assets/pen-pen.png","assets/yambow.png","assets/bikky.png","assets/nitron.png","assets/bomber-pepe.png","assets/gyoraibo.png","assets/Protoman9.jpg","assets/pole.png","assets/penpen-maker.png","assets/pen-pen.png","assets/yambow.png","assets/bikky.png"],
+        needleman:["assets/needle-press.png","assets/hari-harry.png","assets/metall-dx.png","assets/cannon.png","assets/yambow.png","assets/hammer-joe.png","assets/bikky.png","assets/needle-press.png","assets/hari-harry.png","assets/metall-dx.png","assets/cannon.png","assets/yambow.png","assets/hammer-joe.png","assets/bikky.png"],
     }
 
     let winCondition = (boardMatches[name]) *2;
@@ -272,24 +308,29 @@ function startCardGame( name ){
 }
 
 function flipCard( ){
-    flipCount++;
     $(".flip-count-display").text(`Attempts: ${flipCount}`);
     $(this).addClass("card-flipped");
-
     if(cardFlipped == true){
         secondCard = $(this).html();
+        $(this).off("click");
+        $(".card").off("click");
         checkMatch();
+        flipCount++;
     } else {
         cardFlipped = true;
         firstCard = $(this).html();
+        $(this).off("click");
     }   
 }
 
 function checkMatch(){
     if( secondCard == firstCard ){
         score += 100;
+        $(".card.card-flipped").addClass("matched");
+        setTimeout( warpUp, 1000);
     } else {
         setTimeout(flipCardBack, 2000);
+        
     }
         firstCard="";
         secondCard="";
@@ -298,4 +339,13 @@ function checkMatch(){
 
 function flipCardBack(){
     $(".card.card-flipped").removeClass("card-flipped");
+    $(".card").on('click', flipCard);
+}
+function warpUp(){
+    $(".matched").addClass("warpUp");
+    setTimeout(hideCard,1000);
+}
+function hideCard(){
+    $(".matched").addClass("hide");
+    $(".card").on('click', flipCard);
 }
