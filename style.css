@@ -27,6 +27,11 @@ body{
     height: 100%;
     width: 100%;
 }
+
+
+/*INTRO EFFECTS */ 
+
+
 .start-button{
     color:white;
 }
@@ -85,6 +90,22 @@ body{
     position: absolute;
     bottom:0;
 }
+.arrowStart{
+    position: absolute;
+    top:91%;
+    left:-3.5%;
+    color:orangered;
+}
+.arrowPassword{
+    position: absolute;
+    top:96%;
+    left:-3.5%;
+    color:orangered;
+}
+
+
+/* STAGE SELECT */
+
 
 .stage-select{
     background-image:url("assets/stageselect.png");
@@ -244,7 +265,7 @@ body{
 
 .typewriter{
     position: absolute;
-    top:70%;
+    bottom:5%;
     left:50%;
     transform:translateX(-50%);
 }
@@ -260,12 +281,16 @@ body{
 }
 @keyframes typing {
     from { width: 0 }
-    to { width: 15% }
+    to { width: 100% }
 }
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: transparent; }
   }
+
+
+/* CARD GAME */
+
 
 .play-area{
     position: absolute;
@@ -348,7 +373,10 @@ body{
     width:100%;
     height:auto;
 }
-/* Flip Animation */
+
+
+/* CARD GAME ANIMATIONS */
+
 
 .card {
     background-color: transparent;
@@ -362,6 +390,9 @@ body{
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
+.card:hover {
+    text-shadow: 4px 4px lightskyblue;
+}
 .card.card-flipped .card-inner{
     transform: rotateY(180deg);
 }
@@ -373,7 +404,30 @@ body{
 }
 .back {
     transform: rotateY(180deg);
-  }
+}
+
+.matched{
+    animation: 1s squash forwards;
+}
+.warpUp{
+    animation: 1s warpUp forwards;
+}
+
+@keyframes squash {
+    from {width:12%;}
+    to {width:1%;} 
+}
+
+@keyframes warpUp{
+    from {top:0px; width:1%;}
+    to{top:-1000px; width:1%}
+}
+
+
+
+/* MEDIA QUERIES */  
+
+
 
 @media only screen and (min-width: 485px){
     .sparkman,.hardman, .geminiman{
