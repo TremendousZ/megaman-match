@@ -107,15 +107,24 @@ body{
 
 /* STAGE SELECT */
 
+.stage-select-container{
+    height:800px;
+    width:800px;
+    position: relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
 
 .stage-select{
     background-image:url("assets/stageselect.png");
     background-size: contain;
     background-repeat: no-repeat;
     height: 100%;
-    width: 100%;
+    width: 77%;
     background-position: center;
     position: relative;
+    margin: 0 auto;
 }
 .mega-man, .char-tile{
     height: 14vh;
@@ -184,6 +193,72 @@ body{
     top: 74%;
     left:66%;
     transform: translate(-50%,-50%);
+}
+@media screen and (min-width:480px){
+    
+    .mega-man, .char-tile{
+        height: 8vh;
+        width: 8vh;  
+    }
+    
+    .sparkman{   
+        background-image: url(assets/tile003.png); 
+        top: 33%;
+        left: 34%;
+        transform: translate(-50%,-50%);
+    }
+    .snakeman{   
+        background-image: url(assets/tile004.png); 
+        top: 33%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .needleman{
+        background-image: url(assets/tile005.png); 
+        top: 33%;
+        left:66%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .hardman{
+        background-image: url(assets/tile009.png); 
+        top: 48%;
+        left:34%;
+        transform: translate(-50%,-50%);
+    }
+
+    .mega-man{
+        top:48%;
+    }
+    
+    .topman{
+        background-image: url(assets/tile011.png); 
+        top: 48%;
+        left:66%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .geminiman{
+        background-image: url(assets/tile015.png); 
+        top: 63%;
+        left:34%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .magnetman{
+        background-image: url(assets/tile016.png); 
+        top: 63%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .shadowman{
+        background-image: url(assets/tile017.png); 
+        top: 63%;
+        left:66%;
+        transform: translate(-50%,-50%);
+    }
 }
 
 .look-left{
