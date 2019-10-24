@@ -303,7 +303,7 @@ body{
 }
 
 .enemy-char{
-    height: 20vh;
+    height: 25vh;
     width: 28vh;
     z-index: 12;
     position: absolute;
