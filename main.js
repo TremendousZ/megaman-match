@@ -6,6 +6,8 @@ let score = 0;
 let cardFlipped = false;
 let firstCard = "";
 let secondCard = "";
+let matchesNeeded;
+let cardsMatched=0;
 
 function initializeApp(){
     launchTitle();
@@ -276,12 +278,13 @@ function createBoard( name ){
         needleman:["assets/needle-press.png","assets/hari-harry.png","assets/metall-dx.png","assets/cannon.png","assets/yambow.png","assets/hammer-joe.png","assets/bikky.png","assets/needle-press.png","assets/hari-harry.png","assets/metall-dx.png","assets/cannon.png","assets/yambow.png","assets/hammer-joe.png","assets/bikky.png"],
     }
 
-    let winCondition = (boardMatches[name]) *2;
+    let winCondition = (boardMatches[name])*2;
+    matchesNeeded = boardMatches[name];
     let cardArea = $("<div>").addClass("card-area");
     let sideBar = $("<div>").addClass("side-bar");
-    let scoreDisplay = $("<div>").addClass("current-score").text(`Score <br> ${score}`);
+    let scoreDisplay = $("<div>").addClass("current-score").text(`Score: ${score}`);
     let flipCountDisplay = $("<div>").addClass("flip-count-display").text(`Attempts: ${flipCount}`);
-    sideBar.append(score, flipCountDisplay);
+    sideBar.append(scoreDisplay, flipCountDisplay);
     $(".play-area").append(sideBar, cardArea);
     let videoBackground = $(".video-background");
     videoBackground.attr("src", `${levelVideos[name]}`);
@@ -326,8 +329,12 @@ function flipCard( ){
 function checkMatch(){
     if( secondCard == firstCard ){
         score += 100;
+        cardsMatched++;
         $(".card.card-flipped").addClass("matched");
         setTimeout( warpUp, 1000);
+        if(cardsMatched === matchesNeeded ){
+            endLevel();
+        }
     } else {
         setTimeout(flipCardBack, 2000);
         
@@ -343,9 +350,17 @@ function flipCardBack(){
 }
 function warpUp(){
     $(".matched").addClass("warpUp");
+    $(".current-score").text(`Score <br> ${score}`);
     setTimeout(hideCard,1000);
 }
 function hideCard(){
     $(".matched").addClass("hide");
     $(".card").on('click', flipCard);
+}
+
+function endLevel(){
+    let endLevelButton = $('<button>').text('End Level');
+    endLevelButton.on('click', startGame);
+    let cardArea = $('.card-area');
+    cardArea.append(endLevelButton);
 }
