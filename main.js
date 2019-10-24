@@ -102,6 +102,7 @@ function startGame(){
     jukeboxStop();
     jukeboxPlay("stageSelect");
     $(".play-area").empty();
+    let stageSelectContainer =$('<div>').addClass('stage-select-container');
     let stageSelect = $("<div>").addClass("stage-select");
     let megaMan = $("<div>").addClass("mega-man char-tile");
     let sparkMan = $("<div>").addClass("sparkman char-tile");
@@ -121,7 +122,8 @@ function startGame(){
     let shadowMan = $("<div>").addClass("shadowman char-tile");
     shadowMan.on("mouseenter", downRight);
     stageSelect.append(megaMan, sparkMan, snakeMan, needleMan, hardMan, topMan, geminiMan, magnetMan, shadowMan);
-    $(".play-area").append(stageSelect);
+    stageSelectContainer.append(stageSelect);
+    $(".play-area").append(stageSelectContainer);
     $(".char-tile").on('click', enemySelected);  
 }
 
