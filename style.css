@@ -135,7 +135,7 @@ body{
 }
 .mega-man{
     background-image: url(assets/tile007.png);
-    top: 47%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -197,34 +197,34 @@ body{
 @media screen and (min-width:480px){
     
     .mega-man, .char-tile{
-        height: 8vh;
-        width: 8vh;  
+        height: 81px;
+        width: 81px;  
     }
     
     .sparkman{   
         background-image: url(assets/tile003.png); 
-        top: 33%;
-        left: 34%;
+        top: 28%;
+        left: 18.5%;
         transform: translate(-50%,-50%);
     }
     .snakeman{   
         background-image: url(assets/tile004.png); 
-        top: 33%;
+        top: 28%;
         left: 50%;
         transform: translate(-50%,-50%);
     }
     
     .needleman{
         background-image: url(assets/tile005.png); 
-        top: 33%;
-        left:66%;
+        top: 28%;
+        left:81%;
         transform: translate(-50%,-50%);
     }
     
     .hardman{
         background-image: url(assets/tile009.png); 
         top: 48%;
-        left:34%;
+        left:18.5%;
         transform: translate(-50%,-50%);
     }
 
@@ -235,28 +235,28 @@ body{
     .topman{
         background-image: url(assets/tile011.png); 
         top: 48%;
-        left:66%;
+        left:81%;
         transform: translate(-50%,-50%);
     }
     
     .geminiman{
         background-image: url(assets/tile015.png); 
-        top: 63%;
-        left:34%;
+        top: 67%;
+        left:18.5%;
         transform: translate(-50%,-50%);
     }
     
     .magnetman{
         background-image: url(assets/tile016.png); 
-        top: 63%;
+        top: 67%;
         left:50%;
         transform: translate(-50%,-50%);
     }
     
     .shadowman{
         background-image: url(assets/tile017.png); 
-        top: 63%;
-        left:66%;
+        top: 67%;
+        left:81%;
         transform: translate(-50%,-50%);
     }
 }
@@ -505,47 +505,4 @@ body{
 
 
 
-@media only screen and (min-width: 485px){
-    .sparkman,.hardman, .geminiman{
-        left:19%;
-    }
-    .needleman, .topman, .shadowman{
-        left:81%;
-    }
 
-}
-@media only screen and (min-width: 955px){
-    .sparkman,.hardman, .geminiman{
-        left:23.5%;
-    }
-    .needleman, .topman, .shadowman{
-        left:76%;
-    }
-
-}
-@media only screen and (min-width: 1200px){
-    .sparkman,.hardman, .geminiman{
-        left:27.5%;
-    }
-    .needleman, .topman, .shadowman{
-        left:72%;
-    }
-}
-@media only screen and (min-width: 1440px){
-    .sparkman,.hardman, .geminiman{
-        left:31%;
-    }
-    .needleman, .topman, .shadowman{
-        left:68.75%;
-    }
-
-}
-@media only screen and (min-width: 1600px){
-    .sparkman,.hardman, .geminiman{
-        left:32.5%;
-    }
-    .needleman, .topman, .shadowman{
-        left:67%;
-    }
-
-}
