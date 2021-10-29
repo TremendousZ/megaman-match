@@ -348,10 +348,15 @@ function checkMatch(){
 
 function flipCardBack(){
     $(".card.card-flipped").removeClass("card-flipped");
+    console.log('flipped back');
     $(".card").on('click', flipCard);
+    let currentFlipCount = flipClount;
+    flipCount++;
+    $('.flip-count-display').value = currentFlipCount;
 }
 function warpUp(){
     $(".matched").addClass("warpUp");
+    console.log('speed up warp up');
     $(".current-score").text(`Score <br> ${score}`);
     setTimeout(hideCard,1000);
 }
